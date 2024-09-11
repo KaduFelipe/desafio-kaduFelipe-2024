@@ -33,32 +33,50 @@ class RecintosZoo {
 
     // Obter detalhes do animal
     const detalhesAnimal = this.animais[animal];
-    const tamanhoAnimal = detalhesAnimal.tamanho;
-    const biomasAnimal = detalhesAnimal.biomas;
-    const carnivoroAnimal = detalhesAnimal.carnivoro;
-
-    // Encontrar recintos viáveis
-    let recintosViaveis = [];
+    const tamanhoAnimal = this.animais[animal].tamanho;
+    const biomasAnimal = this.animais[animal].biomas;
+    const carnivoroAnimal = this.animais[animal].carnivoro;
     
+
+    let recintosViaveis = [];
+
     // Verificar cada recinto
-    for (let recinto of this.recintos) {
+    for (let i = 0; i < this.recintos.length; i++) {
+      const recinto = this.recintos[i];
+
       // Calcular o espaço ocupado no recinto
       let espacoOcupado = 0;
-      for (let a of recinto.animais) {
+      for (let j = 0; j < recinto.animais.length; j++) {
+        const a = recinto.animais[j];
         const especieAnimal = this.animais[a.especie];
         espacoOcupado += a.quantidade * especieAnimal.tamanho;
       }
       const espacoDisponivel = recinto.tamanho - espacoOcupado;
-      
+
       // Verificar se o recinto é compatível com o bioma do animal
-      const biomaCompatível = biomasAnimal.some(b => recinto.biomas.includes(b));
-      
+      let biomaCompatível = false;
+      for (let k = 0; k < biomasAnimal.length; k++) {
+        if (recinto.biomas.includes(biomasAnimal[k])) {
+          biomaCompatível = true;
+          break;
+        }
+      }
+
       // Verificar se o recinto é adequado para um animal carnívoro
-      const conviveComCarnivoros = recinto.animais.every(a => this.animais[a.especie].carnivoro === carnivoroAnimal);
-      
+      let conviveComCarnivoros = true;
+      if (carnivoroAnimal) {
+        for (let l = 0; l < recinto.animais.length; l++) {
+          const a = recinto.animais[l];
+          if (this.animais[a.especie].carnivoro !== carnivoroAnimal) {
+            conviveComCarnivoros = false;
+            break;
+          }
+        }
+      }
+
       // Verificar se há espaço suficiente para o animal
       const espacoSuficiente = espacoDisponivel >= (tamanhoAnimal * quantidade);
-      
+
       // Verificar se o recinto é adequado para hipopótamos
       const regrasHipopotamo = animal !== "HIPOPOTAMO" || recinto.biomas.includes("rio");
 
@@ -77,14 +95,14 @@ class RecintosZoo {
   }
 }
 
-// Exportando a classe
+// Exportando a classe RecintosZoo
 export { RecintosZoo };
 
 // Bloco de execução - Testando a classe RecintosZoo
 const zoologico = new RecintosZoo();
 
-// Testando animal 
-const resultado = zoologico.analisaRecintos('MACACO', 2);
+// Testando colocar mais um animal 
+const resultado = zoologico.analisaRecintos('GAZELA', 2);
 console.log(resultado);
 
 
