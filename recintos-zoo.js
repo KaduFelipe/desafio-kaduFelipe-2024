@@ -54,7 +54,8 @@ class RecintosZoo {
     }
 
     if (recintosViaveis.length > 0) {
-      return { recintosViaveis };
+      // Exibir mensagem diretamente em vez de array
+      return `Recintos viáveis: ${recintosViaveis.join(', ')}`;
     } else {
       return { erro: "Não há recinto viável" };
     }
@@ -65,6 +66,6 @@ class RecintosZoo {
 const zoologico = new RecintosZoo();
 
 // Testando animais a acrescentar 
-console.log(zoologico.analisaRecintos('URSO', 2));
+console.log(zoologico.analisaRecintos('MACACO', 2));
 
 
