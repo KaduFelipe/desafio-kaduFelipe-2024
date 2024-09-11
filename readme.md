@@ -1,0 +1,1 @@
+Este projeto envolve a criação de uma lógica para alocar animais em recintos de zoológico de forma eficiente.
