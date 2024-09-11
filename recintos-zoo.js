@@ -1,5 +1,4 @@
 class RecintosZoo {
-
   constructor() {
     // Definir os animais com suas propriedades
     this.animais = {
@@ -62,4 +61,11 @@ class RecintosZoo {
   }
 }
 
-export { RecintosZoo };
+// Bloco de execução - Testando a classe RecintosZoo
+const zoologico = new RecintosZoo();
+
+// Testando com "MACACO", 2
+console.log(zoologico.analisaRecintos('MACACO', 2));
+
+// Testando com "UNICORNIO", 1 (animal inválido)
+console.log(zoologico.analisaRecintos('UNICORNIO', 1));
