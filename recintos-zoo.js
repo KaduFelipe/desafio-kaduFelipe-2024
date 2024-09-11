@@ -64,8 +64,7 @@ class RecintosZoo {
 // Bloco de execução - Testando a classe RecintosZoo
 const zoologico = new RecintosZoo();
 
-// Testando com "MACACO", 2
-console.log(zoologico.analisaRecintos('MACACO', 2));
+// Testando animais a acrescentar 
+console.log(zoologico.analisaRecintos('URSO', 2));
 
-// Testando com "UNICORNIO", 1 (animal inválido)
-console.log(zoologico.analisaRecintos('UNICORNIO', 1));
+
